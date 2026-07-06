@@ -71,6 +71,9 @@ textarea {
 .sidebar {
   width: 220px;
   flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
   background: var(--color-primary);
   color: #fff;
   display: flex;
