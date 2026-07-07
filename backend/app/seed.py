@@ -9,6 +9,7 @@ Usage:
 
 from app.core.database import SessionLocal
 from app.core.security import hash_password
+from app.core.config import settings
 from app.models.referentiels import (
     Client,
     Equipement,
@@ -127,8 +128,12 @@ def run():
         seed_statuts_priorites(db, Statut, STATUTS)
         seed_statuts_priorites(db, Priorite, PRIORITES)
 
-        # IMPORTANT: changer cet email/mot de passe avant le déploiement réel
-        seed_admin(db, email="timite@comafrique.ci", mot_de_passe="ADMIN_PASSWORD_CHANGE_ME", nom="TIMITÉ")
+        seed_admin(
+            db,
+            email="timite@comafrique.ci",
+            mot_de_passe=settings.seed_admin_password or "ADMIN_PASSWORD_CHANGE_ME",
+            nom="TIMITÉ",
+        )
 
         print("Seed terminé avec succès.")
     finally:
